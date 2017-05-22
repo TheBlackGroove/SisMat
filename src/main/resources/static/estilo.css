@@ -1,0 +1,22 @@
+.fondo-login{
+	background-image: url(images/pattern-background.jpg);
+	background-repeat: repeat-y;
+	background-repeat: repeat-x;
+	height: 100vh;
+}
+
+.background-patron{
+	background-color: white;
+}
+
+.header-principal{
+	height: 70px;
+}
+
+.logo-sidenav{
+	font-size: 80pt; 
+}
+
+.btn-modificar{
+	background-color: #5b94ef !important;
+}

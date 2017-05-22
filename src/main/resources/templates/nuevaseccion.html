@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>	
+	<meta charset="ISO-8859-1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"/>	
+	<link rel="stylesheet" type="text/css" href="../static/libraries/estilo.css" th:href="@{/libraries/estilo.css}"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+	<title>SisMat</title>
+</head>
+<body class="background-patron">
+	<header>
+		<div class="row">
+			<nav class="top-nav light-blue darken-4"  style="height: 70px">
+				<div class="col l10 m12 s12 offset-l2">
+					<div class="container">
+						<div class="nav-wrapper center-align">					
+							<a class="brand-logo" style="font-size: 28pt;" th:href="@{/}">SisMat</a>
+						</div>				
+					</div>	
+					<div class="container">
+						<a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
+					</div>	
+				</div>	
+			</nav>
+		</div>
+		
+		<ul id="nav-mobile" class="side-nav fixed">
+			<li class="logo">
+				<div class="container center-align" style="padding-top: 60px; padding-bottom: 60px;">
+					<i id="logo-container" class="material-icons logo-sidenav" >library_books</i>
+				</div>				
+			</li>
+			<li class="no-padding">
+				<ul class="collapsible collapsible-acordion">
+					<li class="bold">
+						<a class="collapsible-header waves-effect waves-teal">Carrera</a>
+						<div class="collapsible-body">
+							<ul>
+								<li><a th:href="@{/carrera/nuevo}" >Registrar</a></li>
+								<li><a th:href="@{/carrera}">Modificar</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="bold">
+						<a class="collapsible-header waves-effect waves-teal">Curso</a>
+						<div class="collapsible-body">
+							<ul>
+								<li><a th:href="@{/curso/nuevo}">Registrar</a></li>
+								<li><a th:href="@{/curso}">Modificar</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="bold">
+						<a class="collapsible-header waves-effect waves-teal">Alumno</a>
+						<div class="collapsible-body">
+							<ul>
+								<li><a th:href="@{/alumno/nuevo}">Registrar</a></li>
+								<li><a th:href="@{/alumno}">Modificar</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="bold">
+						<a class="collapsible-header waves-effect waves-teal">Docente</a>
+						<div class="collapsible-body">
+							<ul>
+								<li><a th:href="@{/docente/nuevo}">Registrar</a></li>
+								<li><a th:href="@{/docente}">Modificar</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="bold">
+						<a class="collapsible-header waves-effect waves-teal">Seccion</a>
+						<div class="collapsible-body">
+							<ul>
+								<li><a th:href="@{/seccion/nuevo}">Registrar</a></li>
+								<li><a th:href="@{/seccion}">Modificar</a></li>
+							</ul>
+						</div>
+					</li>				
+					<li class="bold">
+						<a class="collapsible-header waves-effect waves-teal">Matricula</a>
+						<div class="collapsible-body">
+							<ul>
+								<li><a th:href="@{/matricula/nuevo}">Registrar</a></li>
+								<li><a th:href="@{/matricula}">Modificar</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</li>
+		</ul>		
+	</header>
+
+	<div class="row">
+		<div class="col l10 m12 s12 offset-l2">
+			<div class="container">
+				<div>
+					<div class="section">
+						<form th:action="@{/seccion/nuevo/horario}" th:object="${detalleseccion}" id="formhorario">
+							<div class="row">
+								<div class="input-field col s12 m4 l4">	
+									<select th:field="*{dia}">
+										<option value="1">Lunes</option>
+										<option value="2">Martes</option>
+										<option value="3">Miercoles</option>
+										<option value="4">Jueves</option>
+										<option value="5">Viernes</option>
+										<option value="6">Sabado</option>
+									</select>
+								</div>
+								<div class="input-field col s6 m3 l3">
+									<select th:field="*{horainicio}">
+										<option value="7">07:00</option>
+										<option value="8">08:00</option>
+										<option value="9">09:00</option>
+										<option value="10">10:00</option>
+										<option value="11">11:00</option>
+										<option value="12">12:00</option>
+										<option value="13">13:00</option>
+										<option value="14">14:00</option>
+										<option value="15">15:00</option>
+										<option value="16">16:00</option>
+										<option value="17">17:00</option>
+										<option value="18">18:00</option>
+										<option value="19">19:00</option>
+										<option value="20">20:00</option>
+										<option value="21">21:00</option>
+										<option value="22">22:00</option>
+										<option value="23">23:00</option>
+									</select>
+								</div>
+								<div class="input-field col s6 m3 l3">
+									<select th:field="*{horafinal}">
+										<option value="7">07:00</option>
+										<option value="8">08:00</option>
+										<option value="9">09:00</option>
+										<option value="10">10:00</option>
+										<option value="11">11:00</option>
+										<option value="12">12:00</option>
+										<option value="13">13:00</option>
+										<option value="14">14:00</option>
+										<option value="15">15:00</option>
+										<option value="16">16:00</option>
+										<option value="17">17:00</option>
+										<option value="18">18:00</option>
+										<option value="19">19:00</option>
+										<option value="20">20:00</option>
+										<option value="21">21:00</option>
+										<option value="22">22:00</option>
+										<option value="23">23:00</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<input type="submit" value="Agregar"/>
+							</div>
+						</form>
+					</div>
+					<h5>Registrar Seccion</h5>
+					<div class="divider"></div>
+					<div class="section">
+						<form th:action="@{/seccion/nuevo/guardar}" method="post" th:object="${seccion}" id="formguardar">
+							<div class="row">
+								<div class="input-field col s12 m6 l5">
+									<select th:field="*{curso.id}">
+										<option th:each="c : ${cursos}" th:value="${c.id}" th:text="${c.nombrecurso}"></option>
+									</select>
+									<label>Curso</label>
+								</div>							
+							</div>
+							<div class="row">
+								<div class="input-field col s12 m6 l5">
+									<select th:field="*{docente.id}">
+										<option th:each="d : ${docentes}" th:value="${d.id}" th:text="${d.nombredocente}"></option>
+									</select>
+									<label>Docente</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12 m6 l5">
+									<input type="text" name="codigoseccion" id="codigoseccion" th:value="${codigoseccion}" maxlength="8" />
+									<label for="codigoseccion">Codigo de la Seccion</label> 
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s12 right-align">
+									<button class="btn waves-effect waves-light" type="submit" name="action" form="formguardar">
+										Guardar <i class="material-icons right">system_update_alt</i>
+									</button>
+								</div>
+							</div>						
+							<h3 th:text="${mensajeerror}"></h3>
+						</form>
+					</div>
+					<div class="divider"></div>
+					<div class="section">
+						<table class="highlight">
+							<thead>
+								<tr>
+									<th>Dia</th>
+									<th>Hora Inicial</th>
+									<th>Hora Final</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="ds : ${listahorarios}">
+									<td th:text="${ds.dia}"></td>
+									<td th:text="${ds.horainicio}"></td>
+									<td th:text="${ds.horafinal}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div> 
+		</div>
+	</div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+    		$('.collapsible').collapsible();
+    		$('select').material_select();
+  		});
+
+		$(".button-collapse").sideNav();
+	
+	</script>
+	
+	
+</body>
+</html>
