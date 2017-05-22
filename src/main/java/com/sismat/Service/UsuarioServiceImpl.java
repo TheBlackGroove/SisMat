@@ -1,5 +1,7 @@
 package com.sismat.Service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,20 @@ public class UsuarioServiceImpl implements UsuarioService {
 	
 	@Override
 	public int ContarVerificarLogin(Usuario usuario) {
-		return usuariorepository.ContarVerificarLogin(usuario.getUlogin(), usuario.getUpassword()).size();
+		ArrayList<Usuario> lista = usuariorepository.ContarVerificarLogin(usuario.getUlogin(), usuario.getUpassword());
+		int cont = lista.size();
+		if (cont > 0){
+			return lista.get(0).getId();
+		}
+		else{
+			return 0;
+		}
 	}
+
+	@Override
+	public Usuario findOne(int id) {
+		return usuariorepository.findOne(id);
+	}
+	
 
 }
