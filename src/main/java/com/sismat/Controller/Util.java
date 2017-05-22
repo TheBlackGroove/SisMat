@@ -2,6 +2,7 @@ package com.sismat.Controller;
 
 import javax.servlet.http.HttpSession;
 
+
 public class Util {
 
 	public static boolean VerificarEstadoLogin(HttpSession session){
@@ -14,5 +15,5 @@ public class Util {
 			return false;
 		}		
 	}
-	
+			
 }

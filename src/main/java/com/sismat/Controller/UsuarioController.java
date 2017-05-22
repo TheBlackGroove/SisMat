@@ -22,6 +22,9 @@ public class UsuarioController {
 		HttpSession session = request.getSession();
 		model.addAttribute("usuario", new Usuario());
 		if(Util.VerificarEstadoLogin(session)){
+			Usuario usuario = (Usuario)session.getAttribute("usuario");
+			model.addAttribute("idperfil", usuario.getPerfil().getId());
+			model.addAttribute("mensajeerror", "");
 			return "dashboard";
 		}
 		else{
@@ -33,8 +36,10 @@ public class UsuarioController {
 	@RequestMapping("/login")
 	public String VerificarLogin(Model model, HttpServletRequest request, Usuario usuario){
 		HttpSession session = request.getSession();
-		if(usuarioservice.ContarVerificarLogin(usuario) != 0){
-			usuario  = usuarioservice.findOne(usuario.getId());
+		int id = usuarioservice.ContarVerificarLogin(usuario);
+		if(id != 0){
+			usuario  = usuarioservice.findOne(id);
+			model.addAttribute("idperfil", usuario.getPerfil().getId());
 			session.setAttribute("usuario", usuario);
 			return "redirect:/";
 		}

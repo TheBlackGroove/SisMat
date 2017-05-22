@@ -30,6 +30,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public Usuario findOne(int id) {
 		return usuariorepository.findOne(id);
 	}
+
+	@Override
+	public int GetIdPerfilxIdUsaurio(int id) {
+		return usuariorepository.GetIdPerfilxIdUsaurio(id);
+	}
 	
 
 }

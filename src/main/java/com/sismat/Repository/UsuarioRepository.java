@@ -17,4 +17,6 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
 	@Query("select u from Usuario u where ulogin = ?1 and upassword = ?2")
 	public ArrayList<Usuario> ContarVerificarLogin(String ulogin, String upassword);
 	
+	@Query(value = "select p.id from usuario u inner join perfil p on p.id = u.idperfil where u.id = ?1", nativeQuery = true)
+	public int GetIdPerfilxIdUsaurio(int id);
 }
