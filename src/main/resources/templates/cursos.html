@@ -106,6 +106,7 @@
 								<th>Nombre</th>
 								<th>Carrera</th>
 								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -114,6 +115,7 @@
 								<td th:text="${c.nombrecurso}"></td>
 								<td th:text="${c.carrera.nombrecarrera}"></td>
 								<td><a th:href="${'/curso/modificar/' + c.id}"><i class="material-icons">mode_edit</i></a></td>
+								<td><a th:href="${'/curso/eliminar/' + c.id}"><i class="material-icons">delete</i></a>
 							</tr>
 						</tbody>
 					</table>
