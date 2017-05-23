@@ -2,6 +2,8 @@ package com.sismat.Repository;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +15,9 @@ public interface CursoRepository extends CrudRepository<Curso, Integer> {
 
 	public int countByCodigocurso(String codigocurso);
 	public int countByNombrecurso(String nombrecurso);	
+	
+	@Modifying
+	@Query("Update Curso c set c.nombrecurso = ?1, c.codigocurso = ?2")
+	public void updateCurso(String nombrecurso, String codigocurso);
 	
 }

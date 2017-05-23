@@ -7,4 +7,7 @@ public interface CursoService {
 	public Curso save(Curso curso);
 	public int countByCodigocurso(String codigocurso);
 	public int countByNombrecurso(String nombrecurso);
+	public void delete(int id);
+	public Curso findOne(int id);
+	public void updateCurso(Curso curso);
 }

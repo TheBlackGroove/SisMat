@@ -35,6 +35,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public int GetIdPerfilxIdUsaurio(int id) {
 		return usuariorepository.GetIdPerfilxIdUsaurio(id);
 	}
+
+	@Override
+	public Usuario save(Usuario usuario) {
+		return usuariorepository.save(usuario);
+	}
+
+	@Override
+	public void delete(int id) {
+		usuariorepository.delete(id);		
+	}
 	
 
 }

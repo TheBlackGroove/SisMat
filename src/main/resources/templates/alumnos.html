@@ -80,15 +80,6 @@
 							</ul>
 						</div>
 					</li>				
-					<li class="bold">
-						<a class="collapsible-header waves-effect waves-teal">Matricula</a>
-						<div class="collapsible-body">
-							<ul>
-								<li><a th:href="@{/matricula/nuevo}">Registrar</a></li>
-								<li><a th:href="@{/matricula}">Modificar</a></li>
-							</ul>
-						</div>
-					</li>
 				</ul>
 			</li>
 		</ul>		
@@ -97,6 +88,22 @@
 	<div class="row">
 		<div class="col l10 m12 s12 offset-l2">
 			<div class="container">
+				<div class="section">
+					<div class="row">
+						<form th:action="@{/alumno/busqueda}" th:object="${busqueda}">
+							<div class="input-field col s10">
+								<i class="material-icons prefix">search</i>
+								<input id="text" name="text" type="text" class="validate" th:value="*{text}"/>
+								<label for="text">Codigo</label>
+							</div>
+							<div class="col s2">
+								<button class="btn waves-effect waves-light" type="submit" name="action">
+									Buscar 
+							    </button>
+							</div>
+						</form>
+					</div>
+				</div>
 				<div>
 					<table>
 						<thead>
@@ -104,6 +111,7 @@
 								<th>Codigo</th>
 								<th>Nombre</th>
 								<th>Carrera</th>
+								<th></th>
 								<th></th>
 							</tr>
 						</thead>
@@ -113,6 +121,7 @@
 								<td th:text="${a.nombrealumno}"></td>
 								<td th:text="${a.carrera.nombrecarrera}"></td>								
 								<td><a th:href="${'/alumno/modificar/' + a.id}"><i class="material-icons">mode_edit</i></a></td>
+								<td><a th:href="${'/alumno/eliminar/' + a.id}"><i class="material-icons">delete</i></a></td>
 							</tr>
 						</tbody>
 					</table>

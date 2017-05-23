@@ -32,4 +32,20 @@ public class CursoServiceImpl implements CursoService {
 		return cursorepositpory.countByNombrecurso(nombrecurso);
 	}
 
+	@Override
+	public void delete(int id) {
+		cursorepositpory.delete(id);		
+	}
+
+	@Override
+	public Curso findOne(int id) {
+		return cursorepositpory.findOne(id);
+	}
+
+	@Override
+	public void updateCurso(Curso curso) {
+		cursorepositpory.updateCurso(curso.getNombrecurso(), curso.getCodigocurso());
+		
+	}
+
 }
