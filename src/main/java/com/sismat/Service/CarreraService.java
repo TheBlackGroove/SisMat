@@ -7,4 +7,5 @@ public interface CarreraService {
 	public boolean VerificarCodigoCarrera(String codigocarrera);
 	public Iterable<Carrera> findAll();
 	public Carrera findOne(int id);
+	public void updateCarrera(Carrera carrera);
 }

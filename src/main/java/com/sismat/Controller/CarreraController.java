@@ -81,4 +81,17 @@ public class CarreraController {
 		}
 	}
 	
+	@RequestMapping("/carrera/modificar/{id}/modificado")
+	public String ModificarCarrera(Model model, HttpServletRequest request, @PathVariable int id, Carrera carrera){
+		HttpSession session = request.getSession();
+		if(Util.VerificarEstadoLogin(session)){
+			carrera.setId(id);
+			carreraservice.updateCarrera(carrera);
+			return "redirect:/carrera";
+		}
+		else{
+			return "redirect:/";
+		}
+	}
+	
 }

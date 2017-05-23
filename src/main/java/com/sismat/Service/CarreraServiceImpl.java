@@ -33,4 +33,10 @@ public class CarreraServiceImpl implements CarreraService {
 		return carrerarepository.findOne(id);
 	}
 
+	@Override
+	public void updateCarrera(Carrera carrera) {
+		carrerarepository.updateCarrera(carrera.getNombrecarrera(), carrera.getId());
+		
+	}
+
 }
