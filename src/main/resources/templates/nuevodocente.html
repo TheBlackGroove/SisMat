@@ -101,7 +101,7 @@
 					<form th:action="@{/docente/nuevo/guardar}" method="post" th:object="${docente}">
 						<div class="row">
 							<div class="input-field col s12 m10 l10">
-								<input type="text" name="nombredocente" id="nombredocente" th:field="*{nombredocente}" class="validate"/>
+								<input type="text" name="nombredocente" id="nombredocente" th:field="*{nombredocente}" class="validate" maxlength="50"/>
 								<label for="nombredocente">Nombre del Docente</label>
 							</div>
 						</div>

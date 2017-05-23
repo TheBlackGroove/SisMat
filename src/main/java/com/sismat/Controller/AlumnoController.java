@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sismat.Entidades.Alumno;
+import com.sismat.Entidades.Perfil;
+import com.sismat.Entidades.Usuario;
 import com.sismat.Service.AlumnoService;
 import com.sismat.Service.CarreraService;
 import com.sismat.Service.UsuarioService;
@@ -58,28 +60,42 @@ public class AlumnoController {
 	public String GuardarAlumno(Model model, HttpServletRequest request, Alumno alumno){
 		HttpSession session = request.getSession();
 		if(Util.VerificarEstadoLogin(session)){
-			if(alumno.getNombrealumno().trim().isEmpty() || alumno.getUsuario().getUlogin().trim().isEmpty() || alumno.getUsuario().getUpassword().isEmpty()){
+			if(!alumno.getNombrealumno().trim().isEmpty() || !alumno.getUsuario().getUlogin().trim().isEmpty() || !alumno.getUsuario().getUpassword().isEmpty()){
 				if(alumno.getUsuario().getUlogin().startsWith("U")){
-					if(alumno.getUsuario().getUpassword().length() < 8){
-						usuarioservice.save(alumno.getUsuario());
-						return "redirect:/alumno";
+					if(alumno.getUsuario().getUpassword().length() >= 8 || alumno.getUsuario().getUlogin().length() == 6){
+						if(usuarioservice.countByUlogin(alumno.getUsuario().getUlogin()) == 0){	
+							Usuario usuario = alumno.getUsuario();
+							Perfil perfil = new Perfil();
+							perfil.setId(2);
+							usuario.setPerfil(perfil);
+							alumno.setUsuario(usuario);
+							alumno.setUsuario(usuarioservice.save(alumno.getUsuario()));
+							alumnoservice.save(alumno);
+							return "redirect:/alumno";
+						}
+						else{
+							model.addAttribute("mensajeerror", "El codigo de alumno ya esta en uso.");
+							model.addAttribute("carreras", carreraservice.findAll());
+							model.addAttribute("alumno", alumno);
+							return "nuevoalumno";
+						}
 					}
 					else{
-						model.addAttribute("mensajeeror", "La contrasena debe de tener por lo menos 8 digitos.");
+						model.addAttribute("mensajeerror", "La contrasena debe de tener por lo menos 8 digitos y el codigo 6.");
 						model.addAttribute("carreras", carreraservice.findAll());
 						model.addAttribute("alumno", alumno);
 						return "nuevoalumno";
 					}
 				}
 				else{
-					model.addAttribute("mensajeeror", "El usuario del alumno debe empezar con U.");
+					model.addAttribute("mensajeerror", "El usuario del alumno debe empezar con U.");
 					model.addAttribute("carreras", carreraservice.findAll());
 					model.addAttribute("alumno", alumno);
 					return "nuevoalumno";
 				}
 			}
 			else{
-				model.addAttribute("mensajeeror", "Debe de rellenar todos los campos.");
+				model.addAttribute("mensajeerror", "Debe de rellenar todos los campos.");
 				model.addAttribute("carreras", carreraservice.findAll());
 				model.addAttribute("alumno", alumno);
 				return "nuevoalumno";

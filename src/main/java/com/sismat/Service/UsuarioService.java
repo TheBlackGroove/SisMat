@@ -8,4 +8,5 @@ public interface UsuarioService {
 	public int GetIdPerfilxIdUsaurio(int id);
 	public Usuario save(Usuario usuario);
 	public void delete(int id);
+	public int countByUlogin(String ulogin);
 }

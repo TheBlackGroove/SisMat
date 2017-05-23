@@ -19,4 +19,7 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
 	
 	@Query(value = "select p.id from usuario u inner join perfil p on p.id = u.idperfil where u.id = ?1", nativeQuery = true)
 	public int GetIdPerfilxIdUsaurio(int id);
+	
+	public int countByUlogin(String ulogin);
+
 }

@@ -45,6 +45,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public void delete(int id) {
 		usuariorepository.delete(id);		
 	}
+
+	@Override
+	public int countByUlogin(String ulogin) {
+		return usuariorepository.countByUlogin(ulogin);
+	}
 	
 
 }
