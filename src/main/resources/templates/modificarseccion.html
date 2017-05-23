@@ -80,15 +80,7 @@
 							</ul>
 						</div>
 					</li>				
-					<li class="bold">
-						<a class="collapsible-header waves-effect waves-teal">Matricula</a>
-						<div class="collapsible-body">
-							<ul>
-								<li><a th:href="@{/matricula/nuevo}">Registrar</a></li>
-								<li><a th:href="@{/matricula}">Modificar</a></li>
-							</ul>
-						</div>
-					</li>
+					
 				</ul>
 			</li>
 		</ul>		
@@ -101,8 +93,8 @@
 					<form th:action="@{/seccion/modificar/__${seccion.id}__/modificado}" th:object="${seccion}">
 						<div class="row">
 							<div class="input-field col s12 m6 l5">
-								<select th:field="*{curso.id}">
-									<option th:each="c : ${cursos}" th:value="${c.id}" th:text="${c.nombrecurso}"></option>
+								<select disabled="disabled">
+									<option th:text="*{curso.nombrecurso}"></option>
 								</select>
 								<label>Curso</label>
 							</div>
@@ -117,13 +109,13 @@
 						</div>						
 						<div class="row">
 							<div class="input-field col s12 m6 l5">
-								<input type="text" name="codigoseccion" id="codigoseccion" th:value="*{codigoseccion}" maxlength="8" />
+								<input type="text" name="codigoseccion" id="codigoseccion" th:value="*{codigoseccion}" maxlength="8" disabled="disabled"/>
 								<label for="codigoseccion">Codigo de la Seccion</label> 
 							</div>
 						</div>
 						<div class="row">
 							<div class="col s12 right-align">
-								<a th:href="@{/seccion/modificar/__${seccion.id}__/horarios}" class="waves-effect waves-light btn">Modifica Horarios</a>
+								<a th:href="@{/seccion/modificar/__${seccion.id}__/horarios}" class="waves-effect waves-light btn">Horarios</a>
 							</div>
 						</div>	
 						<div class="row">

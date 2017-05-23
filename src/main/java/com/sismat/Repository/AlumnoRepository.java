@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.sismat.Entidades.Alumno;
+import com.sismat.Entidades.Usuario;
 
 @Repository
 @Transactional
@@ -20,5 +21,6 @@ public interface AlumnoRepository extends CrudRepository<Alumno, Integer> {
 	@Query(value = "select a.* from alumno a inner join usuario u on a.idusuario = u.id where u.ulogin = ?1 limit 1", nativeQuery = true)
 	public Iterable<Alumno> BuscarPorCodalumno(String ulogin);
 	
+	public Alumno findByUsuario(Usuario usuario);
 	
 }

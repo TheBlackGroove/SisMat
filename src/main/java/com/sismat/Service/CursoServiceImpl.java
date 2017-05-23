@@ -3,6 +3,7 @@ package com.sismat.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sismat.Entidades.Carrera;
 import com.sismat.Entidades.Curso;
 import com.sismat.Repository.CursoRepository;
 
@@ -46,6 +47,11 @@ public class CursoServiceImpl implements CursoService {
 	public void updateCurso(Curso curso) {
 		cursorepositpory.updateCurso(curso.getNombrecurso(), curso.getCodigocurso());
 		
+	}
+
+	@Override
+	public Iterable<Curso> findByCarrera(Carrera carrera) {
+		return cursorepositpory.findByCarrera(carrera);
 	}
 
 }

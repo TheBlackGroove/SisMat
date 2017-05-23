@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sismat.Entidades.Alumno;
+import com.sismat.Entidades.Usuario;
 import com.sismat.Repository.AlumnoRepository;
 
 @Service
@@ -40,6 +41,11 @@ public class AlumnoServiceImpl implements AlumnoService {
 	@Override
 	public Iterable<Alumno> BuscarPorCodalumno(String ulogin) {
 		return alumnorepository.BuscarPorCodalumno(ulogin);
+	}
+
+	@Override
+	public Alumno findByUsuario(Usuario usuario) {
+		return alumnorepository.findByUsuario(usuario);
 	}
 
 }

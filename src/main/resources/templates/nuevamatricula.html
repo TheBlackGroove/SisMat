@@ -36,51 +36,6 @@
 			<li class="no-padding">
 				<ul class="collapsible collapsible-acordion">
 					<li class="bold">
-						<a class="collapsible-header waves-effect waves-teal">Carrera</a>
-						<div class="collapsible-body">
-							<ul>
-								<li><a th:href="@{/carrera/nuevo}" >Registrar</a></li>
-								<li><a th:href="@{/carrera}">Modificar</a></li>
-							</ul>
-						</div>
-					</li>
-					<li class="bold">
-						<a class="collapsible-header waves-effect waves-teal">Curso</a>
-						<div class="collapsible-body">
-							<ul>
-								<li><a th:href="@{/curso/nuevo}">Registrar</a></li>
-								<li><a th:href="@{/curso}">Modificar</a></li>
-							</ul>
-						</div>
-					</li>
-					<li class="bold">
-						<a class="collapsible-header waves-effect waves-teal">Alumno</a>
-						<div class="collapsible-body">
-							<ul>
-								<li><a th:href="@{/alumno/nuevo}">Registrar</a></li>
-								<li><a th:href="@{/alumno}">Modificar</a></li>
-							</ul>
-						</div>
-					</li>
-					<li class="bold">
-						<a class="collapsible-header waves-effect waves-teal">Docente</a>
-						<div class="collapsible-body">
-							<ul>
-								<li><a th:href="@{/docente/nuevo}">Registrar</a></li>
-								<li><a th:href="@{/docente}">Modificar</a></li>
-							</ul>
-						</div>
-					</li>
-					<li class="bold">
-						<a class="collapsible-header waves-effect waves-teal">Seccion</a>
-						<div class="collapsible-body">
-							<ul>
-								<li><a th:href="@{/seccion/nuevo}">Registrar</a></li>
-								<li><a th:href="@{/seccion}">Modificar</a></li>
-							</ul>
-						</div>
-					</li>				
-					<li class="bold">
 						<a class="collapsible-header waves-effect waves-teal">Matricula</a>
 						<div class="collapsible-body">
 							<ul>
@@ -99,6 +54,19 @@
 			<div class="container">
 				<div>
 					<h5>Registrar Matricula</h5>
+					<form th:action="@{/matricula/nuevo/buscar}" method="POST" th:object="${curso}">
+						<div class="row">
+							<div class="input-field col s10 m6 l5">						
+								<select th:field="*{id}">
+									<option th:each="c : ${cursos}" th:value="${c.id}" th:text="${c.nombrecurso}"></option>
+								</select>
+								<button class="btn waves-effect waves-light" type="submit" name="acti">
+									Buscar <i class="material-icons right">search</i>
+							    </button>
+							</div>
+						</div>
+					</form>
+
 					<form th:action="@{/matricula/nuevo/guardar}" method="post" th:object="${matricula}">
 						<div class="row">
 							<div class="input-field col s12 m6 l5">

@@ -53,4 +53,11 @@ public class UsuarioController {
 			return "index";
 		}
 	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.setAttribute("usuario", null);
+		return "redirect:/";
+	}
 }

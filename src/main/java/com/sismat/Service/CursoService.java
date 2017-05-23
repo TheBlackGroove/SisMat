@@ -1,5 +1,6 @@
 package com.sismat.Service;
 
+import com.sismat.Entidades.Carrera;
 import com.sismat.Entidades.Curso;
 
 public interface CursoService {
@@ -10,4 +11,5 @@ public interface CursoService {
 	public void delete(int id);
 	public Curso findOne(int id);
 	public void updateCurso(Curso curso);
+	public Iterable<Curso> findByCarrera(Carrera carrera);
 }

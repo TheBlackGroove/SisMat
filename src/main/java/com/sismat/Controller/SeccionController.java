@@ -16,11 +16,15 @@ import com.sismat.Entidades.Seccion;
 import com.sismat.Service.CursoService;
 import com.sismat.Service.DetalleSeccionService;
 import com.sismat.Service.DocenteService;
+import com.sismat.Service.MatriculaService;
 import com.sismat.Service.SeccionService;
 
 @Controller
 public class SeccionController {
 
+	@Autowired
+	private MatriculaService matriculaservice;
+	
 	@Autowired
 	private SeccionService seccionservice;
 	
@@ -130,6 +134,22 @@ public class SeccionController {
 	
 	@RequestMapping("/seccion/modificar/{id}")
 	public String RedirectModificarSeccion(Model model, @PathVariable int id){
-		
+		model.addAttribute("seccion", seccionservice.findOne(id));
+		model.addAttribute("docentes", docenteservice.findAll());
+		return "modificarseccion";
+	}
+	
+	@RequestMapping("/seccion/modificar/{id}/modificado")
+	public String ModificarSeccion(Model model, Seccion seccion, @PathVariable int id){
+		seccion.setId(id);
+		seccionservice.update(seccion);
+		return "redirect:/seccion";
+	}
+	
+	@RequestMapping("/seccion/eliminar/{id}")
+	public String EliminarSeccion(Model model, @PathVariable int id){
+		matriculaservice.DeletexIdSeccion(id);
+		seccionservice.delete(id);
+		return "redirect:/seccion";
 	}
 }
