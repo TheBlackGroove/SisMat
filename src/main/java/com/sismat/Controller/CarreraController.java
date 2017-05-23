@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sismat.Entidades.Carrera;
@@ -34,15 +35,15 @@ public class CarreraController {
 	public String GuardarNuevaCarrera(Model model, Carrera carrera){
 		if(carrera.getNombrecarrera().trim().length() != 0 || carrera.getCodigocarrera().trim().length() != 0){
 			if(!carrera.getCodigocarrera().contains(" ")){
-				if(carrera.getCodigocarrera().startsWith("CV")){
+				if(carreraservice.VerificarCodigoCarrera(carrera.getCodigocarrera())){
 					carrera = carreraservice.save(carrera);
 					return "redirect:/carrera";
 				}
 				else{
 					model.addAttribute("carrera",carrera);
-					model.addAttribute("mensajeerror", "El codigo de la carrera debe empezar con CV.");
+					model.addAttribute("mensajeerror", "Ese codigo de carrera ya existe.");
 					return "nuevacarrera";
-				}
+				}								
 			}
 			else{
 				model.addAttribute("carrera",carrera);
@@ -58,8 +59,26 @@ public class CarreraController {
 	}
 	
 	@RequestMapping("/carrera")
-	public RedireccionarCarrera(){
-		
+	public String RedireccionarCarrera(Model model, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		if(Util.VerificarEstadoLogin(session)){
+			model.addAttribute("carreras", carreraservice.findAll());
+			return "carreras";	
+		}
+		else{
+			return "redirect:/";
+		}
+	}
+	
+	@RequestMapping("/carrera/modificar/{id}")
+	public String RedireccionarModificar(Model model, HttpServletRequest request, @PathVariable int id){
+		HttpSession session = request.getSession();
+		if(Util.VerificarEstadoLogin(session)){
+			model.addAttribute("carrera", carreraservice.findOne(id));
+			return "modificarcarrera";
+		}else{
+			return "redirect:/";
+		}
 	}
 	
 }

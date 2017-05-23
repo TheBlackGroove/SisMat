@@ -23,7 +23,9 @@ public class UsuarioController {
 		model.addAttribute("usuario", new Usuario());
 		if(Util.VerificarEstadoLogin(session)){
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
-			model.addAttribute("idperfil", usuario.getPerfil().getId());
+			boolean admin;
+			if (usuario.getPerfil().getId() == 1) admin = true; else admin = false;
+			model.addAttribute("admin", admin);
 			model.addAttribute("mensajeerror", "");
 			return "dashboard";
 		}
@@ -39,7 +41,9 @@ public class UsuarioController {
 		int id = usuarioservice.ContarVerificarLogin(usuario);
 		if(id != 0){
 			usuario  = usuarioservice.findOne(id);
-			model.addAttribute("idperfil", usuario.getPerfil().getId());
+			boolean admin;
+			if (usuario.getPerfil().getId() == 1) admin = true; else admin = false;
+			model.addAttribute("admin", admin);
 			session.setAttribute("usuario", usuario);
 			return "redirect:/";
 		}
