@@ -80,15 +80,7 @@
 							</ul>
 						</div>
 					</li>				
-					<li class="bold">
-						<a class="collapsible-header waves-effect waves-teal">Matricula</a>
-						<div class="collapsible-body">
-							<ul>
-								<li><a th:href="@{/matricula/nuevo}">Registrar</a></li>
-								<li><a th:href="@{/matricula}">Modificar</a></li>
-							</ul>
-						</div>
-					</li>
+					
 				</ul>
 			</li>
 		</ul>		
@@ -102,17 +94,21 @@
 						<thead>
 							<tr>
 								<th>Codigo</th>
+								<th>Carrera</th>
 								<th>Curso</th>
 								<th>Docente</th>
+								<th></th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody >
 							<tr th:each="s : ${secciones}">
 								<td th:text="${s.codigoseccion}"></td>
+								<td th:text="${s.curso.carrera.nombrecarrera}"></td>
 								<td th:text="${s.curso.nombrecurso}"></td>
 								<td th:text="${s.docente.nombredocente}"></td>
 								<td><a th:href="${'/seccion/modificar/' + s.id}"><i class="material-icons">mode_edit</i></a></td>
+								<td><a th:href="${'/seccion/eliminar/' + s.id}"><i class="material-icons">delete</i></a></td>
 							</tr>
 						</tbody>
 					</table>
