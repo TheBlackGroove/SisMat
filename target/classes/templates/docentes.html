@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>	
+	<meta charset="ISO-8859-1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"/>	
+	<link rel="stylesheet" type="text/css" href="../static/libraries/estilo.css" th:href="@{/libraries/estilo.css}"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+	<title>SisMat</title>
+</head>
+<body class="background-patron">
+	<header>
+		<div class="row">
+			<nav class="top-nav light-blue darken-4"  style="height: 70px">
+				<div class="col l10 m12 s12 offset-l2">
+					<div class="container">
+						<div class="nav-wrapper center-align">					
+							<a class="brand-logo" style="font-size: 28pt;" th:href="@{/}">SisMat</a>
+						</div>				
+					</div>	
+					<div class="container">
+						<a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
+					</div>	
+				</div>	
+			</nav>
+		</div>
+		
+		<ul id="nav-mobile" class="side-nav fixed">
+			<li class="logo">
+				<div class="container center-align" style="padding-top: 60px; padding-bottom: 60px;">
+					<i id="logo-container" class="material-icons logo-sidenav" >library_books</i>
+				</div>				
+			</li>
+			<li class="no-padding">
+				<ul class="collapsible collapsible-acordion">
+					<li class="bold">
+						<a class="collapsible-header waves-effect waves-teal">Carrera</a>
+						<div class="collapsible-body">
+							<ul>
+								<li><a th:href="@{/carrera/nuevo}" >Registrar</a></li>
+								<li><a th:href="@{/carrera}">Modificar</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="bold">
+						<a class="collapsible-header waves-effect waves-teal">Curso</a>
+						<div class="collapsible-body">
+							<ul>
+								<li><a th:href="@{/curso/nuevo}">Registrar</a></li>
+								<li><a th:href="@{/curso}">Modificar</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="bold">
+						<a class="collapsible-header waves-effect waves-teal">Alumno</a>
+						<div class="collapsible-body">
+							<ul>
+								<li><a th:href="@{/alumno/nuevo}">Registrar</a></li>
+								<li><a th:href="@{/alumno}">Modificar</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="bold">
+						<a class="collapsible-header waves-effect waves-teal">Docente</a>
+						<div class="collapsible-body">
+							<ul>
+								<li><a th:href="@{/docente/nuevo}">Registrar</a></li>
+								<li><a th:href="@{/docente}">Modificar</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="bold">
+						<a class="collapsible-header waves-effect waves-teal">Seccion</a>
+						<div class="collapsible-body">
+							<ul>
+								<li><a th:href="@{/seccion/nuevo}">Registrar</a></li>
+								<li><a th:href="@{/seccion}">Modificar</a></li>
+							</ul>
+						</div>
+					</li>				
+					<li class="bold"><a class="waves-effect waves-teal" th:href="@{/logout}">Cerrar Sesion</a></li>
+				</ul>
+			</li>
+		</ul>		
+	</header>
+
+	<div class="row">
+		<div class="col l10 m12 s12 offset-l2">
+			<div class="container">
+				<div class="section">
+					<div class="row">
+						<form th:action="@{/docente/busqueda}" th:object="${busqueda}">
+							<div class="input-field col s10">
+								<i class="material-icons prefix">search</i>
+								<input id="text" name="text" type="text" class="validate" th:value="*{text}"/>
+								<label for="text">Codigo</label>
+							</div>
+							<div class="col s2">
+								<button class="btn waves-effect waves-light" type="submit" name="action">
+									Buscar 
+							    </button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div>
+					<table>
+						<thead>
+							<tr>
+								<th>Codigo</th>
+								<th>Nombre</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody th:each="d : ${docentes}">
+							<tr>
+								<td th:text="${d.usuario.ulogin}"></td>
+								<td th:text="${d.nombredocente}"></td>								
+								<td><a th:href="${'/docente/modificar/' + d.id}"><i class="material-icons">mode_edit</i></a></td>
+								<td><a th:href="${'/docente/eliminar/' + d.id}"><i class="material-icons">delete</i></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div> 
+		</div>
+	</div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+    		$('.collapsible').collapsible();
+    		$('select').material_select();
+  		});
+
+		$(".button-collapse").sideNav();
+	
+	</script>
+	
+	
+</body>
+</html>

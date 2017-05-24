@@ -91,8 +91,18 @@ public class MatriculaController {
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
 			Alumno alumno = alumnoservice.findByUsuario(usuario);
 			matricula.setAlumno(alumno);
-			matriculaservice.save(matricula);
-			return "redirect:/matricula";
+			if(matriculaservice.ContarMatriculasIdenticas(matricula) == 0){
+				matriculaservice.save(matricula);
+				return "redirect:/matricula";	
+			}
+			else{
+				model.addAttribute("curso", new Curso());
+				model.addAttribute("cursos", cursoservice.findByCarrera(alumno.getCarrera()));
+				model.addAttribute("matricula", new Matricula());
+				model.addAttribute("mensajeerror", "Ya se encuentra matriculado en esta seccion.");
+				model.addAttribute("secciones", new ArrayList<Seccion>());
+				return "nuevamatricula";
+			}			
 		}
 		else
 		{

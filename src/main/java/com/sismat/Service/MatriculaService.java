@@ -8,4 +8,5 @@ public interface MatriculaService {
 	public Iterable<Matricula> findByAlumno(Alumno alumno);
 	public Matricula save(Matricula matricula);
 	public void delete(int id);
+	public int ContarMatriculasIdenticas(Matricula matricula);
 }

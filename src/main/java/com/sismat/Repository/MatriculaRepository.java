@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sismat.Entidades.Alumno;
 import com.sismat.Entidades.Matricula;
+import com.sismat.Entidades.Seccion;
 
 @Repository
 @Transactional
@@ -20,5 +21,6 @@ public interface MatriculaRepository extends CrudRepository<Matricula, Integer> 
 	
 	public Iterable<Matricula> findByAlumno(Alumno alumno);
 	
-	
+	@Query("Select count(m) from Matricula m where m.alumno = ?1 and m.seccion = ?2")
+	public int ContarMatriculasidenticas(Alumno alumno, Seccion seccion);
 }

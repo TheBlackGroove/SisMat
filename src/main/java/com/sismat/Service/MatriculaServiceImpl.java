@@ -34,4 +34,9 @@ public class MatriculaServiceImpl implements MatriculaService {
 		matricularepository.delete(id);		
 	}
 
+	@Override
+	public int ContarMatriculasIdenticas(Matricula matricula) {
+		return matricularepository.ContarMatriculasidenticas(matricula.getAlumno(), matricula.getSeccion());
+	}
+
 }
