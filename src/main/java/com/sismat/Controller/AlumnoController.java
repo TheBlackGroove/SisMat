@@ -60,9 +60,9 @@ public class AlumnoController {
 	public String GuardarAlumno(Model model, HttpServletRequest request, Alumno alumno){
 		HttpSession session = request.getSession();
 		if(Util.VerificarEstadoLogin(session)){
-			if(!alumno.getNombrealumno().trim().isEmpty() || !alumno.getUsuario().getUlogin().trim().isEmpty() || !alumno.getUsuario().getUpassword().isEmpty()){
+			if(!alumno.getNombrealumno().trim().isEmpty() && !alumno.getUsuario().getUlogin().trim().isEmpty() && !alumno.getUsuario().getUpassword().isEmpty()){
 				if(alumno.getUsuario().getUlogin().startsWith("U")){
-					if(alumno.getUsuario().getUpassword().length() >= 8 || alumno.getUsuario().getUlogin().length() == 6){
+					if(alumno.getUsuario().getUpassword().length() >= 8 && alumno.getUsuario().getUlogin().length() == 6){
 						if(usuarioservice.countByUlogin(alumno.getUsuario().getUlogin()) == 0){	
 							Usuario usuario = alumno.getUsuario();
 							Perfil perfil = new Perfil();
@@ -145,8 +145,8 @@ public class AlumnoController {
 		HttpSession session = request.getSession();
 		if(Util.VerificarEstadoLogin(session)){
 			Alumno alumno = alumnoservice.findOne(id);
-			usuarioservice.delete(alumno.getUsuario().getId());
 			alumnoservice.delete(id);
+			usuarioservice.delete(alumno.getUsuario().getId());
 			return "redirect:/alumno";
 		}
 		else{

@@ -128,8 +128,8 @@ public class DocenteController {
 	@RequestMapping("/docente/eliminar/{id}")
 	public String DeleteDocente(Model model, @PathVariable int id){
 		Docente docente = docenteservice.findOne(id);
-		usuarioservice.delete(docente.getUsuario().getId());
 		docenteservice.delete(id);
+		usuarioservice.delete(docente.getUsuario().getId());
 		return "redirect:/docentes";
 	}
 	

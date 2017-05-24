@@ -44,6 +44,7 @@
 							</ul>
 						</div>
 					</li>
+					<li class="bold"><a class="waves-effect waves-teal" th:href="@{/logout}">Cerrar Sesion</a></li>
 				</ul>
 			</li>
 		</ul>		
@@ -67,7 +68,7 @@
 								<td th:text="${m.seccion.codigoseccion}"></td>
 								<td th:text="${m.seccion.curso.nombrecurso}"></td>
 								<td th:text="${m.seccion.docente.nombredocente}"></td>
-								<td><a th:href="${'/matricula/eliminar' + m.id}"><i class="material-icons">delete</i></a></td>
+								<td><a th:href="${'/matricula/eliminar/' + m.id}"><i class="material-icons">delete</i></a></td>
 							</tr>
 						</tbody>
 					</table>

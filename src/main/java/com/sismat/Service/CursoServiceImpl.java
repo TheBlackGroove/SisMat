@@ -45,7 +45,7 @@ public class CursoServiceImpl implements CursoService {
 
 	@Override
 	public void updateCurso(Curso curso) {
-		cursorepositpory.updateCurso(curso.getNombrecurso(), curso.getCodigocurso());
+		cursorepositpory.updateCurso(curso.getNombrecurso(), curso.getCodigocurso(), curso.getId());
 		
 	}
 

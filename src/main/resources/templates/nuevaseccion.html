@@ -89,6 +89,7 @@
 							</ul>
 						</div>
 					</li>
+					<li class="bold"><a class="waves-effect waves-teal" th:href="@{/logout}">Cerrar Sesion</a></li>
 				</ul>
 			</li>
 		</ul>		
@@ -180,12 +181,6 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="input-field col s12 m6 l5">
-									<input type="text" name="codigoseccion" id="codigoseccion" th:value="${codigoseccion}" maxlength="8" />
-									<label for="codigoseccion">Codigo de la Seccion</label> 
-								</div>
-							</div>
-							<div class="row">
 								<div class="col s12 right-align">
 									<button class="btn waves-effect waves-light" type="submit" name="action" form="formguardar">
 										Guardar <i class="material-icons right">system_update_alt</i>
@@ -208,8 +203,8 @@
 							<tbody>
 								<tr th:each="ds : ${listahorarios}">
 									<td th:text="${ds.dia}"></td>
-									<td th:text="${ds.horainicio}"></td>
-									<td th:text="${ds.horafinal}"></td>
+									<td th:text="${ds.horainicio + ':00'}"></td>
+									<td th:text="${ds.horafinal + ':00'}"></td>
 								</tr>
 							</tbody>
 						</table>

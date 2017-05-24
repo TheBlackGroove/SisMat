@@ -18,8 +18,8 @@ public interface CursoRepository extends CrudRepository<Curso, Integer> {
 	public int countByNombrecurso(String nombrecurso);	
 	
 	@Modifying
-	@Query("Update Curso c set c.nombrecurso = ?1, c.codigocurso = ?2")
-	public void updateCurso(String nombrecurso, String codigocurso);
+	@Query("Update Curso c set c.nombrecurso = ?1, c.codigocurso = ?2 where c.id = ?3")
+	public void updateCurso(String nombrecurso, String codigocurso, int id);
 	
 	public Iterable<Curso> findByCarrera(Carrera carrera);
 	

@@ -118,6 +118,7 @@ public class CursoController {
 			if(!curso.getCodigocurso().contains(" ")){
 				if(curso.getCodigocurso().length() == 5 && curso.getNombrecurso().trim().length() > 0){
 					if(cursoservice.countByCodigocurso(curso.getCodigocurso()) == 0 && cursoservice.countByNombrecurso(curso.getNombrecurso()) == 0){
+						curso.setId(id);
 						cursoservice.updateCurso(curso);
 						return "redirect:/curso";
 					}
