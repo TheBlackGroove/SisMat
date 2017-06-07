@@ -94,7 +94,7 @@
 						<div class="row">
 							<div class="input-field col s12 m6 l7">
 								<select>
-									<option disabled="disabled" th:text="${curso.carrera.nombrecarrera}"></option>
+									<option th:text="${curso.carrera.nombrecarrera}" th:value="${curso.carrera.id}"></option>
 								</select>
 								<label>Carrera</label>
 							</div>							
@@ -121,7 +121,7 @@
 						
 					</form>
 					
-					<h3 th:text="${mesajeerror}"></h3>
+					<h3 th:text="${mensajeerror}"></h3>
 				</div>
 					
 			</div>

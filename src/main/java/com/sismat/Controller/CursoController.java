@@ -102,7 +102,8 @@ public class CursoController {
 	public String RedirectModificarCurso(HttpServletRequest request, Model model, @PathVariable int id){
 		HttpSession session = request.getSession();
 		if(Util.VerificarEstadoLogin(session)){
-			model.addAttribute("curso", cursoservice.findOne(id));
+			Curso curso = cursoservice.findOne(id);
+			model.addAttribute("curso", curso);
 			model.addAttribute("mensajeerror", "");
 			return "modificarcurso";
 		}
@@ -115,10 +116,11 @@ public class CursoController {
 	public String ModificarCurso(Model model, HttpServletRequest request, @PathVariable int id, Curso curso){
 		HttpSession session = request.getSession();
 		if(Util.VerificarEstadoLogin(session)){
+			curso.setId(id);
+			curso.setCarrera(carreraservice.findByCurso(curso));
 			if(!curso.getCodigocurso().contains(" ")){
 				if(curso.getCodigocurso().length() == 5 && curso.getNombrecurso().trim().length() > 0){
-					if(cursoservice.countByCodigocurso(curso.getCodigocurso()) == 0 && cursoservice.countByNombrecurso(curso.getNombrecurso()) == 0){
-						curso.setId(id);
+					if(cursoservice.countByNombrecurso(curso.getNombrecurso()) == 0){
 						cursoservice.updateCurso(curso);
 						return "redirect:/curso";
 					}

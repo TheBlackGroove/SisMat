@@ -13,4 +13,7 @@ public interface CarreraRepository extends CrudRepository<Carrera, Integer> {
 	@Query("Update Carrera c set c.nombrecarrera = ?1 where c.id = ?2")
 	public void updateCarrera(String nombrecarrera, int idcarrera);
 	
+	@Query(value = "select ca.* from curso cu inner join carrera ca on ca.id = cu.idcarrera where cu.id = ?1", nativeQuery = true)
+	public Carrera SelectByCurso(int idcurso);	
+	
 }

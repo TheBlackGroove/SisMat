@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sismat.Entidades.Carrera;
+import com.sismat.Entidades.Curso;
 import com.sismat.Repository.CarreraRepository;
 
 @Service
@@ -37,6 +38,11 @@ public class CarreraServiceImpl implements CarreraService {
 	public void updateCarrera(Carrera carrera) {
 		carrerarepository.updateCarrera(carrera.getNombrecarrera(), carrera.getId());
 		
+	}
+
+	@Override
+	public Carrera findByCurso(Curso curso) {
+		return carrerarepository.SelectByCurso(curso.getId());
 	}
 
 }
